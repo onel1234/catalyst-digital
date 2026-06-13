@@ -111,7 +111,7 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative w-full min-h-[100dvh] md:min-h-[850px] pt-[120px] md:pt-[160px] overflow-hidden bg-transparent">
+      <section className="relative w-full min-h-[100dvh] md:min-h-[850px] flex flex-col justify-between overflow-hidden bg-transparent">
         <div className="absolute inset-0 w-full h-full block z-0">
           <Image
             src="/hero_city_crossing.png"
@@ -125,12 +125,15 @@ export default function Home() {
         </div>
         {/* Subtle Grid Overlay */}
         <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-50"></div>
-        <div className="relative z-10 w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          {/* Text Content */}
-          <div
-            className="col-span-1 lg:col-span-8 fade-in-up"
-            data-delay="100"
-          >
+        
+        {/* Main Content (Pushes bottom bar down) */}
+        <div className="relative z-10 w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto pt-[140px] md:pt-[180px] pb-12 flex-grow flex flex-col justify-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 w-full">
+            {/* Text Content */}
+            <div
+              className="col-span-1 lg:col-span-8 fade-in-up"
+              data-delay="100"
+            >
             <h1 className="font-display-lg-mobile text-[40px] leading-[1.1] md:text-[56px] lg:text-[64px] xl:text-[80px] font-light text-platinum mb-6 md:mb-8">
               Turn ideas into <br />
               <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary via-electric-indigo to-shock-pink">
@@ -147,9 +150,10 @@ export default function Home() {
             </p>
           </div>
         </div>
+        </div>
         
         {/* Bottom Actions Bar */}
-        <div className="absolute z-30 bottom-6 md:bottom-12 left-0 w-full px-margin-mobile md:px-margin-desktop pointer-events-none">
+        <div className="relative z-30 w-full px-margin-mobile md:px-margin-desktop pb-8 md:pb-12 pointer-events-none shrink-0">
           <div className="max-w-container-max mx-auto relative flex flex-col md:flex-row items-center md:items-end justify-between w-full gap-8 md:gap-0">
             {/* Buttons */}
             <div className="flex flex-row flex-wrap items-center justify-center md:justify-start gap-3 sm:gap-6 w-full md:w-auto pointer-events-auto">
