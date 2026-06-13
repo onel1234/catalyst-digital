@@ -111,7 +111,7 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative w-full min-h-[100dvh] md:min-h-[850px] flex flex-col justify-between overflow-hidden bg-transparent">
+      <section className="relative w-full min-h-[100dvh] flex flex-col justify-between overflow-hidden bg-transparent">
         <div className="absolute inset-0 w-full h-full block z-0">
           <Image
             src="/hero_city_crossing.png"
@@ -180,7 +180,7 @@ export default function Home() {
             {/* Scroll Indicator */}
             <a
               href="#services"
-              className="pointer-events-auto flex flex-col items-center gap-4 opacity-70 hover:opacity-100 transition-opacity duration-300 group cursor-pointer animate-pulse md:absolute md:left-1/2 md:-translate-x-1/2 md:bottom-0"
+              className="pointer-events-auto flex flex-col items-center gap-4 opacity-70 hover:opacity-100 transition-opacity duration-300 group cursor-pointer animate-pulse md:absolute md:left-1/2 md:-translate-x-1/2 md:top-1/2 md:-translate-y-1/2"
               aria-label="Scroll down"
             >
               <svg
