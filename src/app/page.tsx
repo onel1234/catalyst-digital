@@ -153,7 +153,7 @@ export default function Home() {
         </div>
         
         {/* Bottom Actions Bar */}
-        <div className="relative z-30 w-full px-margin-mobile md:px-margin-desktop pb-8 md:pb-12 pointer-events-none shrink-0">
+        <div className="relative z-30 w-full px-margin-mobile md:px-margin-desktop pb-12 md:pb-24 pointer-events-none shrink-0">
           <div className="max-w-container-max mx-auto relative flex flex-col md:flex-row items-center md:items-end justify-between w-full gap-8 md:gap-0">
             {/* Buttons */}
             <div className="flex flex-row flex-wrap items-center justify-center md:justify-start gap-3 sm:gap-6 w-full md:w-auto pointer-events-auto">
