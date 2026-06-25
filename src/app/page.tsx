@@ -2,6 +2,17 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import FlowingMenu from "./components/FlowingMenu";
+
+const services = [
+  { link: '/services', text: 'Brand architecture', image: 'https://picsum.photos/600/400?random=1' },
+  { link: '/services', text: 'Brand strategy dev', image: 'https://picsum.photos/600/400?random=2' },
+  { link: '/services', text: 'Social media content', image: 'https://picsum.photos/600/400?random=3' },
+  { link: '/services', text: 'Digital strategy', image: 'https://picsum.photos/600/400?random=4' },
+  { link: '/services', text: 'Web dev and SEO', image: 'https://picsum.photos/600/400?random=5' },
+  { link: '/services', text: 'Mass media coord', image: 'https://picsum.photos/600/400?random=6' },
+  { link: '/services', text: 'On ground activation', image: 'https://picsum.photos/600/400?random=7' }
+];
 
 export default function Home() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -53,16 +64,10 @@ export default function Home() {
           </a>
           <div className="hidden md:flex items-center space-x-12">
             <a
-              className="text-primary font-bold border-b-2 border-primary pb-1 text-button"
-              href="#"
+              className="text-platinum/70 font-medium hover:text-primary transition-colors duration-300 text-button"
+              href="/services"
             >
               Services
-            </a>
-            <a
-              className="text-platinum/70 font-medium hover:text-primary transition-colors duration-300 text-button"
-              href="#"
-            >
-              Portfolio
             </a>
             <a
               className="text-platinum/70 font-medium hover:text-primary transition-colors duration-300 text-button"
@@ -100,8 +105,7 @@ export default function Home() {
         {/* Mobile Menu Dropdown */}
         <div className={`md:hidden absolute top-[100px] left-0 w-full bg-background/95 backdrop-blur-3xl border-b border-platinum/10 transition-all duration-300 overflow-hidden ${isMobileMenuOpen ? "max-h-[400px] py-6 opacity-100" : "max-h-0 py-0 opacity-0"}`}>
           <div className="flex flex-col items-center space-y-6">
-            <a className="text-primary font-bold border-b-2 border-primary pb-1 text-button" href="#" onClick={() => setIsMobileMenuOpen(false)}>Services</a>
-            <a className="text-platinum/70 font-medium hover:text-primary transition-colors duration-300 text-button" href="#" onClick={() => setIsMobileMenuOpen(false)}>Portfolio</a>
+            <a className="text-platinum/70 font-medium hover:text-primary transition-colors duration-300 text-button" href="/services" onClick={() => setIsMobileMenuOpen(false)}>Services</a>
             <a className="text-platinum/70 font-medium hover:text-primary transition-colors duration-300 text-button" href="#" onClick={() => setIsMobileMenuOpen(false)}>About</a>
             <a className="btn-hover-fill px-6 py-3 border border-platinum/20 rounded-full font-button text-button text-platinum inline-flex items-center gap-2 group mt-4" href="#" onClick={() => setIsMobileMenuOpen(false)}>
               Start a Project
@@ -165,7 +169,7 @@ export default function Home() {
               </a>
               <a
                 className="flex-1 sm:flex-none justify-center group px-4 py-3 sm:px-8 sm:py-4 text-platinum font-button text-xs sm:text-button rounded-full flex items-center gap-2 hover:text-electric-indigo transition-colors duration-300 whitespace-nowrap border border-transparent hover:border-platinum/20"
-                href="#services"
+                href="/services"
               >
                 View Capabilities
                 <span
@@ -205,7 +209,7 @@ export default function Home() {
         id="services"
       >
         <div className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-24 fade-in-up">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-12 md:mb-24 fade-in-up">
             <div className="md:col-span-5">
               <span className="font-label-caps text-label-caps text-electric-indigo mb-4 block">
                 01 — CAPABILITIES
@@ -222,107 +226,16 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Service Card 1 */}
-            <div
-              className="group bg-white p-8 rounded-lg border border-platinum/20 shadow-sm hover:shadow-xl transition-all duration-500 card-momentum fade-in-up"
-              data-delay="100"
-            >
-              <div className="w-16 h-16 bg-electric-indigo/10 rounded flex items-center justify-center mb-8 group-hover:bg-electric-indigo group-hover:scale-110 transition-all duration-300">
-                <span
-                  className="material-symbols-outlined text-[32px] text-electric-indigo group-hover:text-white transition-colors"
-                  data-icon="architecture"
-                >
-                  architecture
-                </span>
-              </div>
-              <h3 className="font-headline-md text-headline-md font-bold mb-4">
-                Brand Architecture
-              </h3>
-              <p className="font-body-md text-body-md text-surface-container-high/70 mb-8">
-                Foundational identity systems built for scale. We define the
-                visual and verbal rules that govern how your brand exists in the
-                world.
-              </p>
-              <a
-                className="inline-flex items-center gap-2 font-button text-button text-electric-indigo group-hover:text-shock-pink transition-colors"
-                href="#"
-              >
-                Learn more{" "}
-                <span
-                  className="material-symbols-outlined text-[16px]"
-                  data-icon="arrow_forward"
-                >
-                  arrow_forward
-                </span>
-              </a>
-            </div>
-            {/* Service Card 2 */}
-            <div
-              className="group bg-white p-8 rounded-lg border border-platinum/20 shadow-sm hover:shadow-xl transition-all duration-500 card-momentum fade-in-up"
-              data-delay="200"
-            >
-              <div className="w-16 h-16 bg-shock-pink/10 rounded flex items-center justify-center mb-8 group-hover:bg-shock-pink group-hover:scale-110 transition-all duration-300">
-                <span
-                  className="material-symbols-outlined text-[32px] text-shock-pink group-hover:text-white transition-colors"
-                  data-icon="campaign"
-                >
-                  campaign
-                </span>
-              </div>
-              <h3 className="font-headline-md text-headline-md font-bold mb-4">
-                Social &amp; Engagement
-              </h3>
-              <p className="font-body-md text-body-md text-surface-container-high/70 mb-8">
-                High-velocity content engines designed to capture attention and
-                sustain momentum across all major digital touchpoints.
-              </p>
-              <a
-                className="inline-flex items-center gap-2 font-button text-button text-shock-pink group-hover:text-electric-indigo transition-colors"
-                href="#"
-              >
-                Learn more{" "}
-                <span
-                  className="material-symbols-outlined text-[16px]"
-                  data-icon="arrow_forward"
-                >
-                  arrow_forward
-                </span>
-              </a>
-            </div>
-            {/* Service Card 3 */}
-            <div
-              className="group bg-white p-8 rounded-lg border border-platinum/20 shadow-sm hover:shadow-xl transition-all duration-500 card-momentum fade-in-up"
-              data-delay="300"
-            >
-              <div className="w-16 h-16 bg-cyber-cyan/10 rounded flex items-center justify-center mb-8 group-hover:bg-cyber-cyan group-hover:scale-110 transition-all duration-300">
-                <span
-                  className="material-symbols-outlined text-[32px] text-cyber-cyan group-hover:text-white transition-colors"
-                  data-icon="insights"
-                >
-                  insights
-                </span>
-              </div>
-              <h3 className="font-headline-md text-headline-md font-bold mb-4">
-                Digital Strategy
-              </h3>
-              <p className="font-body-md text-body-md text-surface-container-high/70 mb-8">
-                Data-informed roadmaps that align business objectives with user
-                behavior, ensuring every initiative delivers measurable ROI.
-              </p>
-              <a
-                className="inline-flex items-center gap-2 font-button text-button text-cyber-cyan group-hover:text-electric-indigo transition-colors"
-                href="#"
-              >
-                Learn more{" "}
-                <span
-                  className="material-symbols-outlined text-[16px]"
-                  data-icon="arrow_forward"
-                >
-                  arrow_forward
-                </span>
-              </a>
-            </div>
+          <div className="relative w-full min-h-[400px] sm:min-h-[500px] md:min-h-[700px] rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] fade-in-up border border-ink-black/5 flex flex-col" data-delay="100">
+            <FlowingMenu 
+              items={services} 
+              speed={20}
+              bgColor="#0D1117"
+              textColor="#F2F4F7"
+              marqueeBgColor="#6A28FF"
+              marqueeTextColor="#F2F4F7"
+              borderColor="rgba(242, 244, 247, 0.1)"
+            />
           </div>
         </div>
       </section>
@@ -410,17 +323,9 @@ export default function Home() {
               <li>
                 <a
                   className="font-body-md text-body-md text-platinum/50 hover:text-shock-pink hover:translate-x-1 transition-all duration-300 inline-block"
-                  href="#"
+                  href="/services"
                 >
                   Services
-                </a>
-              </li>
-              <li>
-                <a
-                  className="font-body-md text-body-md text-platinum/50 hover:text-shock-pink hover:translate-x-1 transition-all duration-300 inline-block"
-                  href="#"
-                >
-                  Portfolio
                 </a>
               </li>
               <li>
