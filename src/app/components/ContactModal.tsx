@@ -50,21 +50,33 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Mock API call
-    setTimeout(() => {
-      console.log("Form submitted:", formData);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setIsSuccess(true);
+        // Auto close after 3 seconds of success message
+        setTimeout(() => {
+          onClose();
+        }, 3000);
+      } else {
+        console.error('Failed to submit form');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    } finally {
       setIsSubmitting(false);
-      setIsSuccess(true);
-      
-      // Auto close after 3 seconds of success message
-      setTimeout(() => {
-        onClose();
-      }, 3000);
-    }, 1500);
+    }
   };
 
   if (!isOpen) return null;
