@@ -1,21 +1,12 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import FlowingMenu from "./components/FlowingMenu";
-
-const services = [
-  { link: '/services', text: 'Brand architecture', image: 'https://picsum.photos/600/400?random=1' },
-  { link: '/services', text: 'Brand strategy dev', image: 'https://picsum.photos/600/400?random=2' },
-  { link: '/services', text: 'Social media content', image: 'https://picsum.photos/600/400?random=3' },
-  { link: '/services', text: 'Digital strategy', image: 'https://picsum.photos/600/400?random=4' },
-  { link: '/services', text: 'Web dev and SEO', image: 'https://picsum.photos/600/400?random=5' },
-  { link: '/services', text: 'Mass media coord', image: 'https://picsum.photos/600/400?random=6' },
-  { link: '/services', text: 'On ground activation', image: 'https://picsum.photos/600/400?random=7' }
-];
+import NavBar from "./components/NavBar";
+import { services } from "../lib/constants";
 
 export default function Home() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const observerOptions = {
@@ -46,73 +37,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      {/* TopNavBar */}
-      <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-platinum/10 transition-transform duration-500 ease-out">
-        <div className="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-base max-w-container-max mx-auto h-[100px]">
-          <a
-            className="flex items-center gap-3 font-display-lg-mobile text-headline-lg-mobile font-extrabold tracking-tighter text-platinum"
-            href="#"
-          >
-            {/* <Image
-              src="/Logo Mark.png"
-              alt="Catalyst Logo"
-              width={32}
-              height={32}
-              className="w-8 h-8 object-contain"
-            /> */}
-            CATALYST
-          </a>
-          <div className="hidden md:flex items-center space-x-12">
-            <a
-              className="text-platinum/70 font-medium hover:text-primary transition-colors duration-300 text-button"
-              href="/services"
-            >
-              Services
-            </a>
-            <a
-              className="text-platinum/70 font-medium hover:text-primary transition-colors duration-300 text-button"
-              href="#"
-            >
-              About
-            </a>
-          </div>
-          <div className="hidden md:block">
-            <a
-              className="btn-hover-fill px-6 py-3 border border-platinum/20 rounded-full font-button text-button text-platinum inline-flex items-center gap-2 group"
-              href="#"
-            >
-              Start a Project
-              <span
-                className="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform duration-300"
-                data-icon="arrow_forward"
-              >
-                arrow_forward
-              </span>
-            </a>
-          </div>
-          <button 
-            className="md:hidden text-platinum p-2 z-50 relative"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            <span
-              className="material-symbols-outlined text-[32px]"
-              data-icon={isMobileMenuOpen ? "close" : "menu"}
-            >
-              {isMobileMenuOpen ? "close" : "menu"}
-            </span>
-          </button>
-        </div>
-        {/* Mobile Menu Dropdown */}
-        <div className={`md:hidden absolute top-[100px] left-0 w-full bg-background/95 backdrop-blur-3xl border-b border-platinum/10 transition-all duration-300 overflow-hidden ${isMobileMenuOpen ? "max-h-[400px] py-6 opacity-100" : "max-h-0 py-0 opacity-0"}`}>
-          <div className="flex flex-col items-center space-y-6">
-            <a className="text-platinum/70 font-medium hover:text-primary transition-colors duration-300 text-button" href="/services" onClick={() => setIsMobileMenuOpen(false)}>Services</a>
-            <a className="text-platinum/70 font-medium hover:text-primary transition-colors duration-300 text-button" href="#" onClick={() => setIsMobileMenuOpen(false)}>About</a>
-            <a className="btn-hover-fill px-6 py-3 border border-platinum/20 rounded-full font-button text-button text-platinum inline-flex items-center gap-2 group mt-4" href="#" onClick={() => setIsMobileMenuOpen(false)}>
-              Start a Project
-            </a>
-          </div>
-        </div>
-      </nav>
+      <NavBar />
 
       {/* Hero Section */}
       <section className="relative w-full min-h-[100dvh] flex flex-col justify-between overflow-hidden bg-transparent">
@@ -139,18 +64,17 @@ export default function Home() {
               data-delay="100"
             >
             <h1 className="font-display-lg-mobile text-[40px] leading-[1.1] md:text-[56px] lg:text-[64px] xl:text-[80px] font-light text-platinum mb-6 md:mb-8">
-              Turn ideas into <br />
+              The catalyst for <br />
               <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary via-electric-indigo to-shock-pink">
-                impactful brand
+                Industry
               </span>
               <br />
               <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-shock-pink to-cyber-cyan">
-                experiences.
+                Disruption.
               </span>
             </h1>
             <p className="font-body-lg text-base md:text-body-lg text-platinum/70 mb-8 md:mb-12 max-w-xl">
-              We engineer momentum for ambitious brands. A rigorous blend of
-              strategy, creative logic, and high-performance execution.
+              Your innovative strategic partner. We empower small and medium enterprises with untapped digital potential, turning vision into disruptive brand experiences.
             </p>
           </div>
         </div>
@@ -169,7 +93,7 @@ export default function Home() {
               </a>
               <a
                 className="flex-1 sm:flex-none justify-center group px-4 py-3 sm:px-8 sm:py-4 text-platinum font-button text-xs sm:text-button rounded-full flex items-center gap-2 hover:text-electric-indigo transition-colors duration-300 whitespace-nowrap border border-transparent hover:border-platinum/20"
-                href="/services"
+                href="/#services"
               >
                 View Capabilities
                 <span
@@ -215,14 +139,12 @@ export default function Home() {
                 01 — CAPABILITIES
               </span>
               <h2 className="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg font-black tracking-tighter text-ink-black leading-tight">
-                Rigorous Strategy.<br />Reckless Creativity.
+                Creativity.<br />Vision. Disruption.
               </h2>
             </div>
             <div className="md:col-span-6 md:col-start-7 flex items-end">
               <p className="font-body-lg text-body-lg text-surface-container-high/80">
-                We don&apos;t just make things look good. We build scalable
-                digital ecosystems that drive engagement, convert audiences, and
-                establish enduring market authority.
+                We aren&apos;t just another agency—we become part of your business. From developing GenZ-focused concepts to comprehensive on-site branding, we are the affordable alternative to industry titans.
               </p>
             </div>
           </div>
@@ -240,61 +162,88 @@ export default function Home() {
         </div>
       </section>
 
-      {/* The Catalyst Difference (Editorial Section) */}
-      <section className="py-[160px] bg-surface-container-lowest relative z-10 clip-diagonal-reverse -mt-16 pb-[240px]">
+      {/* Portfolio Section */}
+      <section id="portfolio" className="py-[160px] bg-surface-container-lowest relative z-10 clip-diagonal-reverse -mt-16 pb-[240px]">
         <div className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
-            <div className="md:col-span-5 fade-in-up">
-              <div className="relative w-full aspect-[4/5] rounded bg-surface-container border border-surface-variant overflow-hidden group">
-                <div className="absolute inset-0 bg-gradient-to-tr from-electric-indigo/20 to-transparent mix-blend-overlay z-10 group-hover:opacity-50 transition-opacity duration-500"></div>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  alt="Team working"
-                  className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbK2JKH_OpY6uwOLpL-PM35kPur1HqSXm1XCjm1SWkTiycbisgJwZ68Vb416KxoUa_NbZWyF71ebp1ZrSxs88pTGT-xOyzrFkCxooPP1nBj7QJxmpcwo0Wjy6VyDATMXGM-K97zBOKRaMYd3Ax4hpG5jsIt6E1rgNGLGu3wThMs7COxS6RFuGjS4i2JTvk6E0sugeMAE3zMeUYTbRbsOFIiShWeJQWexh_AIdAdz_hinuibuBVaaQ2pCVqNNxiErLrQwwuaIcxCSY"
-                />
-              </div>
-            </div>
-            <div className="md:col-span-6 md:col-start-7 mt-16 md:mt-0 fade-in-up" data-delay="200">
+            <div className="md:col-span-12 fade-in-up" data-delay="100">
               <span className="font-label-caps text-label-caps text-shock-pink mb-4 block">
-                02 — THE DIFFERENCE
+                02 — PORTFOLIO
               </span>
-              <h2 className="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-md md:text-headline-md font-bold text-platinum mb-8 leading-tight">
-                We don&apos;t follow trends. We establish them through systemic
-                design and behavioral logic.
+              <h2 className="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-md md:text-headline-md font-bold text-platinum mb-12 leading-tight">
+                Featured Client Work
               </h2>
-              <div className="space-y-8">
-                <div className="relative pl-8 border-l border-electric-indigo/30 hover:border-electric-indigo transition-colors duration-300">
-                  <h4 className="font-button text-button text-platinum mb-2">
-                    Institutional Authority
-                  </h4>
-                  <p className="font-body-md text-body-md text-on-surface-variant">
-                    We bring global network rigor to every project, ensuring
-                    structural integrity and strategic depth before a single
-                    pixel is placed.
-                  </p>
+            </div>
+            
+            <div className="md:col-span-12 fade-in-up" data-delay="200">
+              <a 
+                href="https://chill-co.vercel.app/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="group block relative w-full rounded-[32px] overflow-hidden bg-surface-container hover:shadow-[0_0_80px_rgba(106,40,255,0.15)] transition-all duration-700 ease-out border border-platinum/5 hover:border-electric-indigo/30"
+              >
+                <div className="grid grid-cols-1 lg:grid-cols-2">
+                  {/* Visual Side */}
+                  <div className="relative w-full aspect-square lg:aspect-auto bg-[#0d1117] overflow-hidden">
+                    {/* Animated glowing orbs */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[radial-gradient(circle_at_center,rgba(106,40,255,0.15)_0%,transparent_50%)] group-hover:scale-110 transition-transform duration-1000 ease-in-out"></div>
+                    <div className="absolute top-0 right-0 w-[80%] h-[80%] bg-[radial-gradient(circle_at_center,rgba(0,255,255,0.05)_0%,transparent_50%)] group-hover:translate-x-10 transition-transform duration-1000 ease-in-out"></div>
+                    
+                    {/* Subtle grid pattern */}
+                    <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:3rem_3rem]"></div>
+                    
+                    {/* Website Preview Iframe */}
+                    <div className="absolute inset-4 sm:inset-8 lg:inset-12 rounded-[16px] sm:rounded-[24px] overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] transform group-hover:scale-[1.02] sm:group-hover:scale-105 transition-all duration-700 ease-out bg-surface-container z-10 pointer-events-none">
+                      {/* Browser Header Mockup */}
+                      <div className="h-6 sm:h-8 bg-[#1a1b23] border-b border-white/5 flex items-center px-3 sm:px-4 gap-1.5 sm:gap-2">
+                        <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-red-500/80"></div>
+                        <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-yellow-500/80"></div>
+                        <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-green-500/80"></div>
+                      </div>
+                      <div className="relative w-full h-[calc(100%-1.5rem)] sm:h-[calc(100%-2rem)] bg-white pointer-events-none">
+                        <iframe 
+                          src="https://chill-co.vercel.app/" 
+                          className="w-full h-full border-0 pointer-events-none"
+                          tabIndex={-1}
+                          scrolling="no"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Content Side */}
+                  <div className="relative p-6 sm:p-10 lg:p-16 flex flex-col justify-center bg-gradient-to-br from-surface-container to-background z-10 border-t lg:border-t-0 lg:border-l border-platinum/5">
+                    {/* Top Accent Bar */}
+                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-electric-indigo to-shock-pink transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-out"></div>
+                    
+                    <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-6 sm:mb-10">
+                      <span className="px-3 sm:px-4 py-1 sm:py-1.5 rounded-full border border-platinum/10 text-[10px] sm:text-xs font-button tracking-wider text-platinum/70 uppercase group-hover:border-electric-indigo/30 transition-colors duration-300">E-Commerce</span>
+                      <span className="px-3 sm:px-4 py-1 sm:py-1.5 rounded-full border border-platinum/10 text-[10px] sm:text-xs font-button tracking-wider text-platinum/70 uppercase group-hover:border-shock-pink/30 transition-colors duration-300">Digital Identity</span>
+                    </div>
+                    
+                    <h3 className="font-display-lg-mobile text-[32px] sm:text-[40px] md:text-[56px] font-bold text-platinum mb-4 sm:mb-6 leading-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-platinum group-hover:to-platinum/60 transition-all duration-300">
+                      Chill Co.
+                    </h3>
+                    
+                    <p className="font-body-lg text-platinum/60 text-base sm:text-lg md:text-xl leading-relaxed mb-8 sm:mb-12 max-w-lg">
+                      A lifestyle SME with immense untapped potential. We provided comprehensive digital content strategy and GenZ-focused disruption to elevate their brand vision and drive actual market impact.
+                    </p>
+                    
+                    <div className="mt-auto flex items-center justify-between pt-6 sm:pt-8 border-t border-platinum/5">
+                      <div className="flex flex-col">
+                        <span className="text-[10px] sm:text-[11px] tracking-widest font-label-caps text-platinum/40 mb-1 sm:mb-2 uppercase">Measurable Impact</span>
+                        <span className="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan to-electric-indigo">+240% Conv. Rate</span>
+                      </div>
+                      
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full border border-platinum/10 flex items-center justify-center bg-surface-variant/50 group-hover:bg-electric-indigo group-hover:border-electric-indigo group-hover:shadow-[0_0_20px_rgba(106,40,255,0.4)] transition-all duration-500 ease-out">
+                        <span className="material-symbols-outlined text-[20px] sm:text-[24px] text-platinum group-hover:translate-x-1 transition-transform duration-300">
+                          arrow_forward
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div className="relative pl-8 border-l border-shock-pink/30 hover:border-shock-pink transition-colors duration-300">
-                  <h4 className="font-button text-button text-platinum mb-2">
-                    Boutique Agility
-                  </h4>
-                  <p className="font-body-md text-body-md text-on-surface-variant">
-                    Unencumbered by traditional agency bloat, our senior teams
-                    operate with high-velocity sprints, moving from insight to
-                    execution rapidly.
-                  </p>
-                </div>
-                <div className="relative pl-8 border-l border-cyber-cyan/30 hover:border-cyber-cyan transition-colors duration-300">
-                  <h4 className="font-button text-button text-platinum mb-2">
-                    Quantifiable Impact
-                  </h4>
-                  <p className="font-body-md text-body-md text-on-surface-variant">
-                    Creativity without metrics is just art. We build feedback
-                    loops into our digital products to ensure continuous
-                    optimization and growth.
-                  </p>
-                </div>
-              </div>
+              </a>
             </div>
           </div>
         </div>
@@ -323,7 +272,7 @@ export default function Home() {
               <li>
                 <a
                   className="font-body-md text-body-md text-platinum/50 hover:text-shock-pink hover:translate-x-1 transition-all duration-300 inline-block"
-                  href="/services"
+                  href="/#services"
                 >
                   Services
                 </a>
@@ -331,9 +280,9 @@ export default function Home() {
               <li>
                 <a
                   className="font-body-md text-body-md text-platinum/50 hover:text-shock-pink hover:translate-x-1 transition-all duration-300 inline-block"
-                  href="#"
+                  href="/#portfolio"
                 >
-                  About
+                  Portfolio
                 </a>
               </li>
               <li>
@@ -390,9 +339,8 @@ export default function Home() {
               © 2024 Catalyst Marketing Agency. All rights reserved.
             </p>
             <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-cyber-cyan"></span>
-              <span className="font-label-caps text-label-caps text-platinum/50">
-                SYSTEM STATUS: OPERATIONAL
+              <span className="font-body-md text-body-md text-platinum/50">
+                Developed by <a href="https://www.swiftstack.digital/" target="_blank" rel="noopener noreferrer" className="text-platinum hover:text-electric-indigo transition-colors duration-300">SwiftStack Digital</a>
               </span>
             </div>
           </div>
