@@ -121,8 +121,8 @@
 }
 
 @layer utilities {
-  .clip-diagonal { clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%); }
-  .clip-diagonal-reverse { clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%); }
+  .clip-diagonal { clip-path: polygon(0 0, 100% 0, 100% calc(100% - 64px), 0 100%); }
+  .clip-diagonal-reverse { clip-path: polygon(0 64px, 100% 0, 100% 100%, 0 100%); }
 
   .fade-in-up {
       opacity: 0;

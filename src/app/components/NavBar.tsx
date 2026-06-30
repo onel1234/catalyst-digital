@@ -8,12 +8,26 @@ import ContactModal from "./ContactModal";
 export default function NavBar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
 
   // Close mobile menu when pathname changes
   useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [pathname]);
+
+  // Handle scroll effect for navbar
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    // Check initial scroll position
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Prevent scrolling when modal is open
   useEffect(() => {
@@ -27,26 +41,44 @@ export default function NavBar() {
     };
   }, [isContactModalOpen]);
 
+  // Listen for custom event to open modal from other components
+  useEffect(() => {
+    const handleOpenModal = () => setIsContactModalOpen(true);
+    window.addEventListener("open-contact-modal", handleOpenModal);
+    return () => window.removeEventListener("open-contact-modal", handleOpenModal);
+  }, []);
+
+  const isHomePage = pathname === '/';
+  const isDarkText = isHomePage && !isScrolled && !isMobileMenuOpen;
+
+  const textColorClass = isDarkText ? 'text-ink-black' : 'text-platinum';
+  const textMutedClass = isDarkText ? 'text-ink-black/70 hover:text-ink-black' : 'text-platinum/70 hover:text-platinum';
+  const borderColorClass = isDarkText ? 'border-ink-black/20 text-ink-black hover:border-ink-black/40' : 'border-platinum/20 text-platinum hover:border-platinum/40';
+
   return (
     <>
-      <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-platinum/10 transition-transform duration-500 ease-out">
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ease-out ${
+        isScrolled || isMobileMenuOpen
+          ? "bg-background/80 backdrop-blur-xl border-b border-platinum/10"
+          : "bg-transparent border-b border-transparent"
+      }`}>
         <div className="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-base max-w-container-max mx-auto h-[100px]">
           <Link
-            className="flex items-center gap-3 font-display-lg-mobile text-headline-lg-mobile font-extrabold tracking-tighter text-platinum hover:text-shock-pink transition-colors duration-300"
+            className={`flex items-center gap-3 font-display-lg-mobile text-headline-lg-mobile font-extrabold tracking-tighter hover:text-shock-pink transition-colors duration-300 ${textColorClass}`}
             href="/"
           >
-            CATALYST
+            CATALYST MARKETING
           </Link>
           <div className="hidden md:flex items-center space-x-12">
             <Link
-              className="text-platinum/70 font-medium hover:text-primary transition-colors duration-300 text-button"
-              href="/#services"
+              className={`font-medium hover:text-primary transition-colors duration-300 text-button ${textMutedClass}`}
+              href="/services"
             >
               Services
             </Link>
             <Link
-              className="text-platinum/70 font-medium hover:text-primary transition-colors duration-300 text-button"
-              href="/#portfolio"
+              className={`font-medium hover:text-primary transition-colors duration-300 text-button ${textMutedClass}`}
+              href="/portfolio"
             >
               Portfolio
             </Link>
@@ -54,7 +86,7 @@ export default function NavBar() {
           <div className="hidden md:block">
             <button
               onClick={() => setIsContactModalOpen(true)}
-              className="btn-hover-fill px-6 py-3 border border-platinum/20 rounded-full font-button text-button text-platinum inline-flex items-center gap-2 group cursor-pointer"
+              className={`btn-hover-fill px-6 py-3 border rounded-full font-button text-button inline-flex items-center gap-2 group cursor-pointer transition-colors ${borderColorClass}`}
             >
               Start a Project
               <span
@@ -65,7 +97,7 @@ export default function NavBar() {
             </button>
           </div>
           <button 
-            className="md:hidden text-platinum p-2 z-50 relative"
+            className={`md:hidden p-2 z-50 relative hover:text-shock-pink transition-colors ${textColorClass}`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             <span
@@ -81,11 +113,11 @@ export default function NavBar() {
           <div className="flex flex-col items-center space-y-6">
             <Link 
               className="text-platinum/70 font-medium hover:text-primary transition-colors duration-300 text-button"
-              href="/#services"
+              href="/services"
             >
               Services
             </Link>
-            <Link className="text-platinum/70 font-medium hover:text-primary transition-colors duration-300 text-button" href="/#portfolio">
+            <Link className="text-platinum/70 font-medium hover:text-primary transition-colors duration-300 text-button" href="/portfolio">
               Portfolio
             </Link>
             <button 

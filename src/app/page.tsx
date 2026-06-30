@@ -2,7 +2,8 @@
 
 import React, { useEffect } from "react";
 import Image from "next/image";
-import FlowingMenu from "./components/FlowingMenu";
+import Link from "next/link";
+import CircularText from "./components/CircularText";
 import NavBar from "./components/NavBar";
 import { services } from "../lib/constants";
 
@@ -43,14 +44,13 @@ export default function Home() {
       <section className="relative w-full min-h-[100dvh] flex flex-col justify-between overflow-hidden bg-transparent">
         <div className="absolute inset-0 w-full h-full block z-0">
           <Image
-            src="/hero_city_crossing.png"
-            alt="City Intersection Aerial View"
+            src="/catalyst hero image.jpeg"
+            alt="Catalyst Hero Background"
             fill
-            className="object-cover"
+            className="object-cover object-center md:object-[center_20%]"
             priority
+            sizes="100vw"
           />
-          {/* Dark gradient overlay for text legibility and cinematic feel */}
-          <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/60 to-background/90 mix-blend-multiply"></div>
         </div>
         {/* Subtle Grid Overlay */}
         <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-50"></div>
@@ -63,7 +63,7 @@ export default function Home() {
               className="col-span-1 lg:col-span-8 fade-in-up"
               data-delay="100"
             >
-            <h1 className="font-display-lg-mobile text-[40px] leading-[1.1] md:text-[56px] lg:text-[64px] xl:text-[80px] font-light text-platinum mb-6 md:mb-8">
+            <h1 className="font-display-lg-mobile text-[40px] leading-[1.1] md:text-[56px] lg:text-[64px] xl:text-[80px] font-light text-ink-black mb-6 md:mb-8">
               The catalyst for <br />
               <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary via-electric-indigo to-shock-pink">
                 Industry
@@ -73,7 +73,7 @@ export default function Home() {
                 Disruption.
               </span>
             </h1>
-            <p className="font-body-lg text-base md:text-body-lg text-platinum/70 mb-8 md:mb-12 max-w-xl">
+            <p className="font-body-lg text-base md:text-body-lg text-ink-black/80 mb-8 md:mb-12 max-w-xl">
               Your innovative strategic partner. We empower small and medium enterprises with untapped digital potential, turning vision into disruptive brand experiences.
             </p>
           </div>
@@ -85,17 +85,17 @@ export default function Home() {
           <div className="max-w-container-max mx-auto relative flex flex-col md:flex-row items-center md:items-end justify-between w-full gap-8 md:gap-0">
             {/* Buttons */}
             <div className="flex flex-row flex-wrap items-center justify-center md:justify-start gap-3 sm:gap-6 w-full md:w-auto pointer-events-auto">
+              <button
+                className="flex-1 sm:flex-none text-center px-4 py-3 sm:px-8 sm:py-4 bg-electric-indigo/10 backdrop-blur-md border border-electric-indigo/50 text-ink-black hover:text-platinum font-button text-xs sm:text-button rounded-full hover:bg-electric-indigo hover:scale-105 active:scale-95 transition-all duration-500 ease-out shadow-[0_0_20px_rgba(106,40,255,0.2)] hover:shadow-[0_0_30px_rgba(106,40,255,0.5)] whitespace-nowrap"
+                onClick={() => window.dispatchEvent(new Event("open-contact-modal"))}
+              >
+                Start a Project
+              </button>
               <a
-                className="flex-1 sm:flex-none text-center px-4 py-3 sm:px-8 sm:py-4 bg-electric-indigo/10 backdrop-blur-md border border-electric-indigo/50 text-platinum font-button text-xs sm:text-button rounded-full hover:bg-electric-indigo hover:scale-105 active:scale-95 transition-all duration-500 ease-out shadow-[0_0_20px_rgba(106,40,255,0.2)] hover:shadow-[0_0_30px_rgba(106,40,255,0.5)] whitespace-nowrap"
-                href="#work"
+                className="flex-1 sm:flex-none justify-center group px-4 py-3 sm:px-8 sm:py-4 text-ink-black font-button text-xs sm:text-button rounded-full flex items-center gap-2 hover:text-electric-indigo transition-colors duration-300 whitespace-nowrap border border-transparent hover:border-ink-black/20"
+                href="#portfolio"
               >
                 Explore Our Work
-              </a>
-              <a
-                className="flex-1 sm:flex-none justify-center group px-4 py-3 sm:px-8 sm:py-4 text-platinum font-button text-xs sm:text-button rounded-full flex items-center gap-2 hover:text-electric-indigo transition-colors duration-300 whitespace-nowrap border border-transparent hover:border-platinum/20"
-                href="/#services"
-              >
-                View Capabilities
                 <span
                   className="material-symbols-outlined text-[16px] sm:text-[18px] group-hover:translate-x-1 transition-transform duration-300"
                   data-icon="arrow_forward"
@@ -148,16 +148,46 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div className="relative w-full min-h-[400px] sm:min-h-[500px] md:min-h-[700px] rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] fade-in-up border border-ink-black/5 flex flex-col" data-delay="100">
-            <FlowingMenu 
-              items={services} 
-              speed={20}
-              bgColor="#0D1117"
-              textColor="#F2F4F7"
-              marqueeBgColor="#6A28FF"
-              marqueeTextColor="#F2F4F7"
-              borderColor="rgba(242, 244, 247, 0.1)"
-            />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 fade-in-up" data-delay="100">
+            {services.map((service, index) => (
+              <div key={index} className="relative group rounded-3xl overflow-hidden h-[450px] shadow-[0_20px_50px_rgba(0,0,0,0.1)] flex flex-col justify-end">
+                {/* Background Image */}
+                <Image
+                  src={service.image}
+                  alt={service.text}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                
+                {/* Gradient Overlay for Glass Effect */}
+                <div className="absolute inset-0 bg-gradient-to-t from-ink-black/95 via-ink-black/50 to-transparent"></div>
+                
+                {/* Card Content */}
+                <div className="relative z-10 p-6 flex flex-col gap-4">
+                  <div>
+                    <h3 className="font-headline-md text-2xl font-bold text-platinum mb-2">{service.text}</h3>
+                    <p className="text-platinum/80 text-sm line-clamp-3 font-body-md">
+                      {service.description}
+                    </p>
+                  </div>
+                  
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2 mb-2">
+                    {service.tags?.map((tag, tagIndex) => (
+                      <span key={tagIndex} className="px-3 py-1 rounded-full bg-platinum/10 backdrop-blur-md text-platinum text-xs font-medium flex items-center gap-1 border border-platinum/10">
+                        <span className="material-symbols-outlined text-[14px]">star</span>
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  
+                  {/* Button */}
+                  <a href={service.link} className="mt-auto w-full py-3.5 bg-platinum text-ink-black font-button text-sm font-semibold text-center rounded-full hover:scale-[1.02] active:scale-[0.98] transition-transform shadow-lg">
+                    Learn more
+                  </a>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -176,10 +206,8 @@ export default function Home() {
             </div>
             
             <div className="md:col-span-12 fade-in-up" data-delay="200">
-              <a 
-                href="https://chill-co.vercel.app/" 
-                target="_blank" 
-                rel="noopener noreferrer"
+              <Link 
+                href="/portfolio/chill-co" 
                 className="group block relative w-full rounded-[32px] overflow-hidden bg-surface-container hover:shadow-[0_0_80px_rgba(106,40,255,0.15)] transition-all duration-700 ease-out border border-platinum/5 hover:border-electric-indigo/30"
               >
                 <div className="grid grid-cols-1 lg:grid-cols-2">
@@ -226,7 +254,7 @@ export default function Home() {
                     </h3>
                     
                     <p className="font-body-lg text-platinum/60 text-base sm:text-lg md:text-xl leading-relaxed mb-8 sm:mb-12 max-w-lg">
-                      A lifestyle SME with immense untapped potential. We provided comprehensive digital content strategy and GenZ-focused disruption to elevate their brand vision and drive actual market impact.
+                      CHILL CO. transforms Sri Lanka’s rich history, folklore, and ancient art into premium oversized apparel. Every collection begins with a story—whether it’s a legendary king, a timeless love story, or a forgotten piece of heritage—and is reimagined into wearable artwork.
                     </p>
                     
                     <div className="mt-auto flex items-center justify-between pt-6 sm:pt-8 border-t border-platinum/5">
@@ -243,7 +271,7 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -257,7 +285,7 @@ export default function Home() {
               className="font-display-lg-mobile text-display-lg-mobile font-black text-platinum tracking-tighter block mb-6 hover:text-shock-pink transition-all duration-300"
               href="#"
             >
-              CATALYST
+              CATALYST MARKETING
             </a>
             <p className="font-body-md text-body-md text-platinum/50 mb-8 max-w-xs">
               Engineering momentum for ambitious brands through rigorous
