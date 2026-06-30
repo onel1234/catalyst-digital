@@ -3,7 +3,7 @@
 import React, { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import CircularText from "./components/CircularText";
+
 import NavBar from "./components/NavBar";
 import { services } from "../lib/constants";
 
