@@ -41,13 +41,23 @@ export default function Home() {
       <NavBar />
 
       {/* Hero Section */}
-      <section className="relative w-full min-h-[100dvh] flex flex-col justify-between overflow-hidden bg-transparent">
+      <section className="relative w-full min-h-[100dvh] flex flex-col justify-between overflow-hidden bg-white">
         <div className="absolute inset-0 w-full h-full block z-0">
+          {/* Desktop Image */}
           <Image
             src="/catalyst hero image.jpeg"
             alt="Catalyst Hero Background"
             fill
-            className="object-cover object-center md:object-[center_20%]"
+            className="hidden md:block object-cover object-[center_20%]"
+            priority
+            sizes="100vw"
+          />
+          {/* Mobile Image */}
+          <Image
+            src="/catalyst mobile logo.jpeg"
+            alt="Catalyst Mobile Logo"
+            fill
+            className="block md:hidden object-contain object-center"
             priority
             sizes="100vw"
           />

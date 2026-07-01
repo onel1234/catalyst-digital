@@ -16,6 +16,8 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
     name: "",
     email: "",
     phone: "",
+    businessName: "",
+    businessType: "",
     selectedServices: [] as string[]
   });
 
@@ -28,6 +30,8 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
         name: "",
         email: "",
         phone: "",
+        businessName: "",
+        businessType: "",
         selectedServices: []
       });
     }
@@ -125,7 +129,11 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                     id="name"
                     required
                     value={formData.name}
-                    onChange={(e) => setFormData({...formData, name: e.target.value})}
+                    onChange={(e) => {
+                      // Only allow letters, spaces, hyphens, and apostrophes
+                      const val = e.target.value.replace(/[^a-zA-Z\s\-']/g, '');
+                      setFormData({...formData, name: val});
+                    }}
                     className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-platinum focus:outline-none focus:border-electric-indigo focus:bg-white/10 transition-all placeholder:text-platinum/30"
                     placeholder="Jane Doe"
                   />
@@ -151,16 +159,68 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
               {/* Phone */}
               <div className="space-y-2">
                 <label htmlFor="phone" className="font-button text-sm text-platinum/70 block">
-                  Phone Number
+                  Phone Number *
                 </label>
                 <input
                   type="tel"
                   id="phone"
+                  required
                   value={formData.phone}
-                  onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                  onChange={(e) => {
+                    // Only allow digits, spaces, hyphens, plus sign, and parenthesis
+                    const val = e.target.value.replace(/[^0-9\s\-+()]/g, '');
+                    setFormData({...formData, phone: val});
+                  }}
                   className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-platinum focus:outline-none focus:border-electric-indigo focus:bg-white/10 transition-all placeholder:text-platinum/30"
                   placeholder="+1 (555) 000-0000"
                 />
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Business Name */}
+                <div className="space-y-2">
+                  <label htmlFor="businessName" className="font-button text-sm text-platinum/70 block">
+                    Business Name
+                  </label>
+                  <input
+                    type="text"
+                    id="businessName"
+                    value={formData.businessName}
+                    onChange={(e) => setFormData({...formData, businessName: e.target.value})}
+                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-platinum focus:outline-none focus:border-electric-indigo focus:bg-white/10 transition-all placeholder:text-platinum/30"
+                    placeholder="Acme Corp"
+                  />
+                </div>
+                
+                {/* Business Type */}
+                <div className="space-y-2">
+                  <label htmlFor="businessType" className="font-button text-sm text-platinum/70 block">
+                    Business Type
+                  </label>
+                  <input
+                    list="business-types"
+                    id="businessType"
+                    value={formData.businessType}
+                    onChange={(e) => setFormData({...formData, businessType: e.target.value})}
+                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-platinum focus:outline-none focus:border-electric-indigo focus:bg-white/10 transition-all placeholder:text-platinum/30"
+                    placeholder="Select or type..."
+                  />
+                  <datalist id="business-types">
+                    <option value="Technology & Software" />
+                    <option value="Retail & E-commerce" />
+                    <option value="Healthcare & Medical" />
+                    <option value="Finance & Banking" />
+                    <option value="Real Estate" />
+                    <option value="Education & Training" />
+                    <option value="Food & Beverage" />
+                    <option value="Travel & Hospitality" />
+                    <option value="Manufacturing" />
+                    <option value="Media & Entertainment" />
+                    <option value="Consulting & Professional Services" />
+                    <option value="Non-profit & Charity" />
+                    <option value="Other" />
+                  </datalist>
+                </div>
               </div>
 
               {/* Services Checkboxes */}
