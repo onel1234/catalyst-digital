@@ -86,14 +86,14 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-black/60 backdrop-blur-md transition-all duration-500">
+    <div className="fixed inset-0 z-[100] flex items-start sm:items-center justify-center p-4 sm:p-6 overflow-y-auto bg-black/60 backdrop-blur-md transition-all duration-500">
       <div 
-        className="relative w-full max-w-2xl bg-[#0a0a0e]/80 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-[0_0_40px_rgba(0,0,0,0.5)] overflow-hidden"
+        className="relative w-full max-w-2xl my-8 sm:my-auto bg-[#0a0a0e]/95 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-[0_0_40px_rgba(0,0,0,0.5)] overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-white/10">
-          <h2 className="font-headline-md text-2xl md:text-3xl font-bold text-platinum">
+        <div className="flex items-center justify-between p-4 sm:p-6 border-b border-white/10">
+          <h2 className="font-headline-md text-xl sm:text-2xl md:text-3xl font-bold text-platinum">
             Start a Project
           </h2>
           <button 
@@ -105,7 +105,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
         </div>
 
         {/* Content */}
-        <div className="p-6 md:p-8">
+        <div className="p-4 sm:p-6 md:p-8">
           {isSuccess ? (
             <div className="flex flex-col items-center justify-center py-12 text-center fade-in-up is-visible">
               <div className="w-20 h-20 bg-electric-indigo/20 rounded-full flex items-center justify-center mb-6">
@@ -117,8 +117,8 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
               </p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-6 fade-in-up is-visible">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6 fade-in-up is-visible">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 {/* Name */}
                 <div className="space-y-2">
                   <label htmlFor="name" className="font-button text-sm text-platinum/70 block">
@@ -176,7 +176,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                 />
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 {/* Business Name */}
                 <div className="space-y-2">
                   <label htmlFor="businessName" className="font-button text-sm text-platinum/70 block">
