@@ -1,9 +1,37 @@
-import React from "react";
+"use client";
+
+import React, { useEffect } from "react";
 import NavBar from "../components/NavBar";
 import { portfolios } from "../../lib/constants";
 import Link from "next/link";
 
 export default function PortfolioPage() {
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.1,
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const delayStr = entry.target.getAttribute("data-delay") || "0";
+          const delay = parseInt(delayStr, 10);
+          setTimeout(() => {
+            entry.target.classList.add("is-visible");
+          }, delay);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll(".fade-in-up").forEach((el) => {
+      observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
   return (
     <div className="flex flex-col min-h-screen bg-surface-container-lowest text-platinum">
       <NavBar />
@@ -75,9 +103,20 @@ export default function PortfolioPage() {
                         {portfolio.client}
                       </h3>
                       
-                      <p className="font-body-lg text-platinum/60 text-base sm:text-lg md:text-xl leading-relaxed mb-8 sm:mb-12 max-w-lg line-clamp-3">
-                        {portfolio.landingPageDescription}
-                      </p>
+                      <div className="flex flex-col gap-4 mb-8 sm:mb-12 max-w-lg">
+                        {portfolio.fullDescription.map((paragraph, pIndex) => (
+                          <p 
+                            key={pIndex} 
+                            className={
+                              pIndex === 0 
+                                ? "font-body-lg text-platinum/90 text-lg sm:text-xl font-bold leading-relaxed" 
+                                : "font-body-lg text-platinum/60 text-base sm:text-lg leading-relaxed"
+                            }
+                          >
+                            {paragraph}
+                          </p>
+                        ))}
+                      </div>
                       
                       <div className="mt-auto flex items-center justify-between pt-6 sm:pt-8 border-t border-platinum/5">
                         <div className="flex flex-col">

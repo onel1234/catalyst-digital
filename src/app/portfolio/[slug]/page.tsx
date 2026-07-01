@@ -66,7 +66,14 @@ export default function PortfolioDetailPage({ params }: { params: Promise<{ slug
             {/* Main Description */}
             <div className="lg:col-span-8 flex flex-col gap-8">
               {portfolio.fullDescription.map((paragraph, index) => (
-                <p key={index} className="font-body-lg text-platinum/80 text-lg md:text-xl leading-relaxed">
+                <p 
+                  key={index} 
+                  className={
+                    index === 0 
+                      ? "font-headline-md text-2xl md:text-3xl font-bold text-platinum mb-2" 
+                      : "font-body-lg text-platinum/80 text-lg md:text-xl leading-relaxed"
+                  }
+                >
                   {paragraph}
                 </p>
               ))}
