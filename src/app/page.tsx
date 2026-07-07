@@ -96,13 +96,13 @@ export default function Home() {
             {/* Buttons */}
             <div className="flex flex-row flex-wrap items-center justify-center md:justify-start gap-3 sm:gap-6 w-full md:w-auto pointer-events-auto">
               <button
-                className="flex-1 sm:flex-none text-center px-4 py-3 sm:px-8 sm:py-4 bg-electric-indigo/10 backdrop-blur-md border border-electric-indigo/50 text-ink-black hover:text-platinum font-button font-bold text-xs sm:text-button rounded-full hover:bg-electric-indigo hover:scale-105 active:scale-95 transition-all duration-500 ease-out shadow-[0_0_20px_rgba(106,40,255,0.2)] hover:shadow-[0_0_30px_rgba(106,40,255,0.5)] whitespace-nowrap"
+                className="flex-1 sm:flex-none sm:w-56 text-center px-4 py-3 sm:px-8 sm:py-4 bg-electric-indigo/10 backdrop-blur-md border border-electric-indigo/50 text-ink-black hover:text-platinum font-button font-bold text-xs sm:text-button rounded-full hover:bg-electric-indigo hover:scale-105 active:scale-95 transition-all duration-500 ease-out shadow-[0_0_20px_rgba(106,40,255,0.2)] hover:shadow-[0_0_30px_rgba(106,40,255,0.5)] whitespace-nowrap"
                 onClick={() => window.dispatchEvent(new Event("open-contact-modal"))}
               >
                 Start a Project
               </button>
               <a
-                className="flex-1 sm:flex-none justify-center group px-4 py-3 sm:px-8 sm:py-4 bg-white/60 backdrop-blur-md border border-white/50 text-ink-black font-button font-bold text-xs sm:text-button rounded-full flex items-center gap-2 hover:bg-white/90 hover:text-electric-indigo transition-all duration-300 shadow-[0_4px_30px_rgba(0,0,0,0.1)] whitespace-nowrap"
+                className="flex-1 sm:flex-none sm:w-56 justify-center group px-4 py-3 sm:px-8 sm:py-4 bg-white/60 backdrop-blur-md border border-white/50 text-ink-black font-button font-bold text-xs sm:text-button rounded-full flex items-center gap-2 hover:bg-white/90 hover:text-electric-indigo transition-all duration-300 shadow-[0_4px_30px_rgba(0,0,0,0.1)] whitespace-nowrap"
                 href="#portfolio"
               >
                 Explore Our Work
