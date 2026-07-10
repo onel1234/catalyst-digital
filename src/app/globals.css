@@ -156,3 +156,17 @@
   .card-momentum { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
   .card-momentum:hover { transform: scale(1.02) translateY(-4px); }
 }
+
+.hero-btn {
+  flex: 1 1 0% !important;
+  min-width: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+@media (min-width: 640px) {
+  .hero-btn {
+    flex: none !important;
+    width: 14rem !important;
+  }
+}
